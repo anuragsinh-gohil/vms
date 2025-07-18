@@ -1,7 +1,7 @@
 # 💼 Volunteer Management System (VMS)
 
 A web-based application for managing volunteers, built using **Spring Boot**, **Thymeleaf**, and **MySQL**.
-**Volunteer Management System (VMS) is a web-based application designed to help organizations efficiently manage their volunteers. The system allows users to add, update, search, and delete volunteer records, ensuring all data is validated and accurate. With a user-friendly interface and robust backend validation, VMS streamlines the process of organizing volunteer information for non-profits, event coordinators, and community groups.******
+Volunteer Management System (VMS) is a web-based application designed to help organizations efficiently manage their volunteers. The system allows users to add, update, search, and delete volunteer records, ensuring all data is validated and accurate. With a user-friendly interface and robust backend validation, VMS streamlines the process of organizing volunteer information for non-profits, event coordinators, and community groups.
 ---
 
 ## ✨ Features
