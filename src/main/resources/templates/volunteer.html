@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<!-- Include common header fragment -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- Main content starts -->
+<div class="hero">
+  <h1>Empower. Organize. Make a Difference.</h1>
+  <p class="lead">Manage your volunteers with ease and impact.</p>
+</div>
+
+<!-- Search Bar: Allows searching volunteers by any attribute (name, age, department, location) -->
+<div class="search-bar-container">
+  <form class="d-flex mb-3 w-100" method="get" th:action="@{/}">
+    <input class="form-control" type="search" name="search" placeholder="Search volunteers..." th:value="${param.search}" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i> Search</button>
+  </form>
+</div>
+
+<div class="container my-4">
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <h2 class="fw-semibold">Volunteers List</h2>
+      <a th:href="@{/add}" class="btn btn-success"><i class="bi bi-person-plus"></i> Add Volunteer</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="simple-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Department</th>
+              <th>Location</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table rows for each volunteer in the search/list result -->
+            <tr th:each="volunteer: ${volunteer}">
+              <td><i class="bi bi-person-circle me-2 text-primary"></i><span th:text="${volunteer.name}"></span></td>
+              <td th:text="${volunteer.age}"></td>
+              <td th:text="${volunteer.department}"></td>
+              <td th:text="${volunteer.location}"></td>
+              <td>
+                <a th:href="@{/edit/{id}(id=${volunteer.id})}" class="btn btn-outline-primary btn-sm me-2"><i class="bi bi-pencil"></i> Update</a>
+                <a th:href="@{/{id}(id=${volunteer.id})}" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+              </td>
+            </tr>
+            <!-- Show this row if no volunteers match the search -->
+            <tr th:if="${#lists.isEmpty(volunteer)}">
+              <td colspan="5" class="text-center text-muted">No volunteers found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main content ends -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Include common footer fragment -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

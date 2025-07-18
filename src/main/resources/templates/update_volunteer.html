@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<!-- Include common header fragment -->
+<div th:replace="fragments/header :: header"></div>
+<!-- Main content starts -->
+<div class="hero">
+  <h1 class="display-6 fw-bold">Update Volunteer</h1>
+  <p class="lead">Edit the details below to update the volunteer's information.</p>
+  </div>
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <a th:href="@{/}" class="btn btn-outline-secondary mb-3 d-flex align-items-center gap-2"><i class="bi bi-arrow-left"></i> Back</a>
+      <div class="card p-4">
+        <h2 class="text-center mb-4">Update Volunteer</h2>
+        <form th:action="@{/{id}(id=${volunteer.id})}" th:object="${volunteer}" method="POST">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" th:field="*{name}" class="form-control" placeholder="Enter Volunteer Name" />
+            <div th:if="${#fields.hasErrors('name')}" class="text-danger small" th:errors="*{name}"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input type="number" name="age" th:field="*{age}" class="form-control" placeholder="Enter Age" min="18" max="100" required />
+            <div th:if="${#fields.hasErrors('age')}" class="text-danger small" th:errors="*{age}"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Department</label>
+            <input type="text" name="department" th:field="*{department}" class="form-control" placeholder="Enter Department" />
+            <div th:if="${#fields.hasErrors('department')}" class="text-danger small" th:errors="*{department}"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input type="text" name="location" th:field="*{location}" class="form-control" placeholder="Enter Location" />
+            <div th:if="${#fields.hasErrors('location')}" class="text-danger small" th:errors="*{location}"></div>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main content ends -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Include common footer fragment -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
